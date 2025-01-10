@@ -72,7 +72,7 @@
             <div class="mb-3">
                 <input type="password" name="password" class="form-control" placeholder="Password" required>
             </div>
-            <button type="submit" class="btn btn-login w-100">Login</button>
+            <button type="button" class="btn btn-login w-100" onclick="window.location='{{ route('home') }}'">Login</button>
             <div class="register-link">
                 <p>Belum memiliki akun? <a href="{{ route('register') }}">Register</a></p>
             </div>
