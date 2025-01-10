@@ -36,6 +36,13 @@ Route::get('/profil', function () {
     return view('profil'); // Pastikan nama view sesuai dengan nama file blade Anda
 });
 
+Route::get('/clear-sessions', function () {
+    DB::table('sessions')->delete();
+    return 'Sessions cleared!';
+});
+
+
+
 
 // Route::get('/home', [MovieController::class, 'index'])->middleware('auth');
 // Route::get('/profile', [ProfileController::class, 'view'])->middleware('auth');
