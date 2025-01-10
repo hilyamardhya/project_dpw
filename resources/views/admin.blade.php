@@ -3,50 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Film</title>
-    <!-- Tambahkan Bootstrap atau CSS lainnya -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Admin Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: white;
+        }
+        .btn-custom {
+            border-radius: 50px;
+            width: 40px;
+            height: 40px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between mb-4">
-            <h1>Daftar Film</h1>
-            <a href="{{ route('films.create') }}" class="btn btn-danger">Tambah</a>
+<div class="container my-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <button class="btn btn-danger px-4">Tambah</button>
+        <div class="d-flex align-items-center">
+            <input type="text" class="form-control me-2" placeholder="Cari...">
+            <button class="btn btn-danger">Cari</button>
         </div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nama Film</th>
-                    <th>Cover</th>
-                    <th>Tahun Rilis</th>
-                    <th>Sutradara</th>
-                    <th>Studio</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($films as $film)
-                <tr>
-                    <td>{{ $film->nama }}</td>
-                    <td><img src="{{ asset('storage/' . $film->cover) }}" alt="{{ $film->nama }}" width="100"></td>
-                    <td>{{ $film->tahun_rilis }}</td>
-                    <td>{{ $film->sutradara }}</td>
-                    <td>{{ $film->studio }}</td>
-                    <td>
-                        <a href="{{ route('films.edit', $film) }}" class="btn btn-warning">Edit</a>
-                        <form action="{{ route('films.destroy', $film) }}" method="POST" style="display:inline-block;">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger" onclick="return confirm('Are you sure?')">Hapus</button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div>
+            <img src="path/to/avatar.jpg" class="rounded-circle" width="40" alt="Avatar">
+        </div>
     </div>
 
-    <!-- Tambahkan Bootstrap JS atau JS lainnya -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <table class="table table-dark table-hover">
+        <thead>
+        <tr>
+            <th>Nama Film</th>
+            <th>Cover</th>
+            <th>Tahun Rilis</th>
+            <th>Sutradara</th>
+            <th>Studio</th>
+            <th>Aksi</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach ($movies as $movie)
+            <tr>
+                <td>{{ $movie['name'] }}</td>
+                <td>
+                    <img src="{{ asset($movie['cover']) }}" alt="Cover" style="width: 80px; height: 80px; object-fit: cover;">
+                </td>
+                <td>{{ $movie['year'] }}</td>
+                <td>{{ $movie['director'] }}</td>
+                <td>{{ $movie['studio'] }}</td>
+                <td>
+                    <button class="btn btn-warning btn-custom"><i class="fas fa-edit"></i></button>
+                    <button class="btn btn-danger btn-custom"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>

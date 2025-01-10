@@ -2,14 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Movie;
+use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function index()
     {
-        $movies = Movie::all();
-        return view('admin.dashboard', compact('movies'));
+        // Data dummy untuk film
+        $movies = [
+            [
+                'name' => 'Film Bagus',
+                'cover' => 'C:\Users\ASUS\OneDrive\Documents\File Nadine\SEM 3\DPW\project_dpw\public\gambar\image1.png',
+                'year' => 2024,
+                'director' => 'Bagus',
+                'studio' => 'Universal',
+            ],
+            [
+                'name' => 'Film Bagus Banget',
+                'cover' => 'C:\Users\ASUS\OneDrive\Documents\File Nadine\SEM 3\DPW\project_dpw\public\gambar\image2.png',
+                'year' => 2025,
+                'director' => 'Bagus',
+                'studio' => 'Universal',
+            ],
+        ];
+        return view('admin', compact('movies'));
     }
 }
-

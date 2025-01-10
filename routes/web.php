@@ -28,9 +28,12 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 Route::resource('films', FilmController::class);
 
 //home
-Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
+// Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/home', function () {return view('home');})->name('home');
 
+//admin
+// Route::get('/admin', [AdminController::class, 'index'])->name('admin')->middleware('auth');\
+Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
 Route::get('/profil', function () {
     return view('profil'); // Pastikan nama view sesuai dengan nama file blade Anda
